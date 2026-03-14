@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Futures Bot</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <main class="dashboard">
+        <header class="dashboard-header">
+            <h1>Binance Futures Bot</h1>
+            <p>Execute market and limit orders instantly.</p>
+        </header>
+
+        <section class="order-panel">
+            <form id="orderForm">
+                
+                <div class="form-group">
+                    <label for="symbol">Symbol</label>
+                    <input type="text" id="symbol" name="symbol" placeholder="e.g. BTCUSDT" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Side</label>
+                        <div class="radio-group">
+                            <label class="radio-btn buy-btn">
+                                <input type="radio" name="side" value="BUY" checked>
+                                <span>Buy / Long</span>
+                            </label>
+                            <label class="radio-btn sell-btn">
+                                <input type="radio" name="side" value="SELL">
+                                <span>Sell / Short</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Order Type</label>
+                        <div class="radio-group">
+                            <label class="radio-btn neutral-btn">
+                                <input type="radio" name="type" value="MARKET" checked>
+                                <span>Market</span>
+                            </label>
+                            <label class="radio-btn neutral-btn">
+                                <input type="radio" name="type" value="LIMIT">
+                                <span>Limit</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" step="0.001" placeholder="0.00" required>
+                    </div>
+
+                    <div class="form-group" id="priceGroup" style="opacity: 0.5; pointer-events: none;">
+                        <label for="price">Price (USDT)</label>
+                        <input type="number" id="price" name="price" step="0.1" placeholder="Market Price">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Execute Order</span>
+                    <span class="loader hidden"></span>
+                </button>
+            </form>
+        </section>
+
+        <div id="notificationArea" class="notification-area hidden">
+            <!-- Notifications will be injected here -->
+        </div>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
